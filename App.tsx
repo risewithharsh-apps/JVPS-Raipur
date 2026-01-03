@@ -40,9 +40,9 @@ const App: React.FC = () => {
             {t.reachOut}
           </p>
           
-          {/* Requested Header Section */}
-          <div className="mt-8 border-t border-slate-100 pt-12 mb-4">
-             <h2 className={`text-3xl md:text-5xl font-heading text-[#2C3E50] ${lang === 'hi' ? 'font-hindi' : ''}`}>
+          {/* Section Title Header */}
+          <div className="mt-12 pt-12 border-t border-slate-200/60 max-w-2xl mx-auto">
+             <h2 className={`text-3xl md:text-5xl font-heading text-[#2C3E50] leading-tight ${lang === 'hi' ? 'font-hindi' : ''}`}>
                {t.title}
              </h2>
           </div>
@@ -73,15 +73,15 @@ const App: React.FC = () => {
           <h2 className={`text-3xl font-heading mb-12 text-center ${lang === 'hi' ? 'font-hindi' : ''}`}>
             {t.videoTitle}
           </h2>
-          <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-black">
+          {/* Improved iframe container to fix "black box" issue */}
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-200">
             <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="absolute top-0 left-0 w-full h-full"
+              src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+              title="Workshop Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
             ></iframe>
           </div>
           <div className="mt-8 text-center text-sm text-slate-500 italic">
@@ -96,26 +96,28 @@ const App: React.FC = () => {
           <h2 className={`text-3xl font-heading mb-10 text-center ${lang === 'hi' ? 'font-hindi' : ''}`}>
             {t.aboutTitle}
           </h2>
-          <div className="space-y-10 text-slate-700 text-lg leading-relaxed">
-            {/* Main Content Paragraph - Ensured as single paragraph */}
-            <p className={`text-center md:text-justify ${lang === 'hi' ? 'font-hindi' : ''}`}>
+          <div className="space-y-12 text-slate-700 text-lg leading-relaxed">
+            {/* Single Paragraph Description as requested */}
+            <p className={`text-center md:text-justify leading-relaxed ${lang === 'hi' ? 'font-hindi' : ''}`}>
               {t.aboutContent[0]}
             </p>
             
-            {/* Fee/Contribution Information Highlighted for better readability */}
-            <div className={`p-8 bg-blue-50/50 rounded-2xl border-l-4 border-blue-200 relative overflow-hidden ${lang === 'hi' ? 'font-hindi' : ''}`}>
-              <div className="absolute top-0 right-0 p-4 opacity-5">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            {/* Improved readability for Fee info - using a more subtle but distinct style */}
+            <div className={`pt-8 border-t border-slate-100 text-center ${lang === 'hi' ? 'font-hindi' : ''}`}>
+              <div className="inline-flex items-start gap-4 text-left max-w-2xl mx-auto p-6 rounded-2xl bg-blue-50/30 text-slate-800">
+                <div className="mt-1 text-blue-500 flex-shrink-0">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+                <p className="font-medium">
+                  {t.aboutContent[1]}
+                </p>
               </div>
-              <p className="relative z-10 font-medium text-slate-800 italic">
-                {t.aboutContent[1]}
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - At the end */}
       <section className="px-6 py-16 bg-white border-t border-[#F3F4F6]">
         <div className="max-w-3xl mx-auto text-center">
           <h3 className={`text-lg font-medium text-slate-500 mb-6 ${lang === 'hi' ? 'font-hindi' : ''}`}>
